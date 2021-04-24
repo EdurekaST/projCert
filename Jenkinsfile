@@ -65,18 +65,5 @@ pipeline {
             }
         }
 
-       # stage('Check if selenium test run') {
-        #    agent{ label 'slave'}
-         #   steps {
-	#	sh "cd /home/jenkins/jenkins_slave/workspace/projCert/"
-	#	sh "java -jar certification-project-1.0-SNAPSHOT-jar-with-dependencies.jar --headless"
-         #   	}
-          #  post {
-           #     failure {
-            #        sh "echo Failure"
-		#			sh "sudo docker rm -f webapp"
-                #}
-		#	}
-		#}
 	}
 }
