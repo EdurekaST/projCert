@@ -1,6 +1,3 @@
-#Jenkinsfile
-
-
 node{
 
     stage('SCM Checkout')
