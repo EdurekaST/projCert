@@ -33,6 +33,9 @@ pipeline {
             steps {
                 sh "sudo /opt/puppetlabs/bin/puppet module install garethr-docker"
                 sh "sudo /opt/puppetlabs/bin/puppet apply /home/jenkins/jenkins_slave/workspace/dockerce.pp"
+		catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                sh "exit 1"
+		}	
             }
         }
 
