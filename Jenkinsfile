@@ -38,7 +38,7 @@ pipeline {
             agent { label 'slave' }
             steps {
                 sh 'cd /home/ubuntu/projCert && sudo git clone https://github.com/EdurekaST/projCert.git'
-                sh "cd /home/ubuntu/projCert && sudo git status master"
+                sh "cd /home/ubuntu/projCert/projCert && sudo git status"
                 }
             }
 
