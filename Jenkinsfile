@@ -37,7 +37,7 @@ pipeline {
         stage('Pull PHP Website') {
             agent { label 'slave' }
             steps {
-                sh 'cd /home/ubuntu/projCert && sudo git clone https://github.com/EdurekaST/projCert.git'
+                sh 'cd /home/ubuntu/projCert && sudo git pull https://github.com/EdurekaST/projCert.git'
                 sh "cd /home/ubuntu/projCert/projCert && sudo git status"
                 }
             }
