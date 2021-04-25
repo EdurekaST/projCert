@@ -33,7 +33,6 @@ pipeline {
                     echo 'start Install Docker on slave through puppet'                    
                 }
             }            
-        }
 
         stage('Git Checkout') {
             agent { label 'slave' }
@@ -63,3 +62,4 @@ pipeline {
             }
         }
     }
+}
