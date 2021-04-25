@@ -34,12 +34,13 @@ pipeline {
                 }
             }            
 
-        stage('Git Checkout') {
+        stage('Pull PHP Website') {
             agent { label 'slave' }
             steps {
-                sh 'cd /home/jenkins/jenkins_slave/workspace/projCert && sudo git checkout master'
+                sh 'cd /home/ubuntu/projCert'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId:'2bccf5ab-a1b5-43f3-8588-e16af6751125', url: 'https://github.com/EdurekaST/projCert.git']]])
+                }
             }
-        }
 
         stage('Docker Build and Run') {
             agent { label 'slave' }
