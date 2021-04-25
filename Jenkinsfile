@@ -27,16 +27,18 @@ pipeline {
             }
         }
 
-        try {
-            stage('Install Docker on slave through puppet') {
-            agent { label 'slave' }
-            steps {                
+        script {
+            try {
+                stage('Install Docker on slave through puppet') {
+                agent { label 'slave' }
+                steps {                
                     sh 'sudo /opt/puppetlabs/bin/puppet module install garethr-docker'
                     sh 'sudo /opt/puppetlabs/bin/puppet apply /home/jenkins/jenkins_slave/workspace/dockerce.pp'
                 }
+                }
+            } catch (all) {
+            echo 'Error detected - While Install Docker on slave through puppet, but we will continue.'
             }
-        } catch (all) {
-           echo 'Error detected - While Install Docker on slave through puppet, but we will continue.'
         }
 
         stage('Git Checkout') {
