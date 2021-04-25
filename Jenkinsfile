@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-       stage('Install Docker on slave through puppet') {
+       stage('Install Docker and version') {
             agent { label 'slave' }
             steps {                
                     echo 'start Install Docker on slave through puppet'                    
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh "sudo docker --version"
                 sh "cd /home/ubuntu/projCert && sudo docker build -t test ."
-                sh "sudo docker run -it -d --name webapp1 -p 1998:80 test"                
+                sh "sudo docker run -it -d --name webapp -p 1998:80 test"                
             }
         }
 
@@ -56,9 +56,7 @@ pipeline {
                 sh "wget -N -O 'firefox-57.0.tar.bz2' http://ftp.mozilla.org/pub/firefox/releases/57.0/linux-x86_64/en-US/firefox-57.0.tar.bz2"
                 sh 'tar -xjf firefox-57.0.tar.bz2'
                 sh 'rm -rf /opt/firefox'
-                sh 'sudo mv firefox /opt/'
-                sh 'sudo mv /usr/bin/firefox /usr/bin/firefox_old'
-                sh 'sudo ln -s /opt/firefox/firefox /usr/bin/firefox'               
+                sh 'sudo mv firefox /opt/             
             }
         }
     }
