@@ -37,8 +37,8 @@ pipeline {
         stage('Pull PHP Website') {
             agent { label 'slave' }
             steps {
-                sh 'cd /home/ubuntu/projCert'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId:'2bccf5ab-a1b5-43f3-8588-e16af6751125', url: 'https://github.com/EdurekaST/projCert.git']]])
+                sh 'cd /home/ubuntu/projCert && sudo git clone https://github.com/EdurekaST/projCert.git'
+                sh "cd /home/ubuntu/projCert && sudo git status master"
                 }
             }
 
@@ -46,7 +46,7 @@ pipeline {
             agent { label 'slave' }
             steps {
                 sh 'sudo docker rm -f webapp || true'
-                sh 'cd /home/jenkins/jenkins_slave/workspace/projCert && sudo docker build -t test .'
+                sh 'cd /home/ubuntu/projCert && sudo docker build -t test .'
                 sh 'sudo docker run -it -d --name webapp -p 1998:80 test'                
             }
         }
